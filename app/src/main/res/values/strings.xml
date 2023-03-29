@@ -2,4 +2,6 @@
     <string name="app_name">MediaPlayer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Title">Niket Bhaskar - Large Screen</string>
+    <string name="titleXL">Niket Bhaskar - XLarge Screen</string>
 </resources>
