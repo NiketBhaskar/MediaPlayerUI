@@ -1,14 +1,12 @@
 package com.example.mediaplayer
 
+import android.graphics.Color
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +34,7 @@ class MainActivity : AppCompatActivity(),IconsClickListener {
     lateinit var playerImage: ImageView
     lateinit var seekBar: SeekBar
     lateinit var playBtn: ImageView
+    lateinit var playerSide: LinearLayout
     var progressSeek: Int = 0
     var handler = Handler()
     var runnable: Runnable? = null
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity(),IconsClickListener {
         ivDrive = findViewById(R.id.ivDrive)
         seekBar = findViewById(R.id.seekBar)
         playBtn = findViewById(R.id.btnPlay)
+        playerSide = findViewById(R.id.playerSide)
         playerImage = findViewById(R.id.playerImage)
         playerTitle = findViewById(R.id.playerTitle)
         playerLength = findViewById(R.id.playerLength)
@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(),IconsClickListener {
             this, songsList, this
         )
         songsRecyclerView.layoutManager = LinearLayoutManager(this)
+        playerSide.background.alpha = 100
 
     }
 
@@ -199,6 +200,8 @@ class MainActivity : AppCompatActivity(),IconsClickListener {
     override fun onCardClick(song: Songs) {
         playerTitle.text = song.title
         playerImage.setImageResource(song.imageView!!)
+        playerSide.setBackgroundResource(song.imageViewBg!!)
+      //  playerSide.background.alpha = 100
         val timeInMillis: Long = length
         val timeSeconds = timeInMillis / 1000
         val minutes = timeSeconds / 60
@@ -208,12 +211,12 @@ class MainActivity : AppCompatActivity(),IconsClickListener {
         length = song.length!!
     }
     fun getSongs():ArrayList<Songs>{
-        var songA = Songs("Alpha","Alpha singer", 60000L, R.drawable.p2 )
-        var songB = Songs("Beta","Beta singer", 55000L, R.drawable.p3)
-        var songC = Songs("Cipher","Cipher singer", 80000L, R.drawable.p5)
-        var songD = Songs("Delta","Delta singer", 90000L, R.drawable.p1)
-        var songE = Songs("Enrique","Enrique singer", 90000L, R.drawable.p4)
-        var songF = Songs("Falcon","Falcon singer", 10000L, R.drawable.p6)
+        var songA = Songs("Alpha","Alpha singer", 60000L, R.drawable.p2, R.drawable.b2 )
+        var songB = Songs("Beta","Beta singer", 55000L, R.drawable.p3, R.drawable.b3)
+        var songC = Songs("Cipher","Cipher singer", 80000L, R.drawable.p5, R.drawable.b5)
+        var songD = Songs("Delta","Delta singer", 90000L, R.drawable.p1, R.drawable.b1)
+        var songE = Songs("Enrique","Enrique singer", 90000L, R.drawable.p4, R.drawable.b4)
+        var songF = Songs("Falcon","Falcon singer", 10000L, R.drawable.p6, R.drawable.b6)
         var songsList: ArrayList<Songs> = arrayListOf()
         songsList.add(songA)
         songsList.add(songB)
